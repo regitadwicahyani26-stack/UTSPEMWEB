@@ -1,0 +1,197 @@
+/* RESET & BASIC */
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #fdfaf7;
+    scroll-behavior: smooth;
+}
+
+/* NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 8%;
+    background: #1a1a1a;
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffc107;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: 500;
+}
+
+.user-greeting {
+    color: #ffc107;
+    font-weight: 600;
+    margin-right: 15px;
+}
+
+.btn-logout {
+    color: #ff4d4d !important;
+}
+
+/* HERO: Kunci agar teks rapi ke bawah */
+.hero {
+    height: 80vh;
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                url("https://images.unsplash.com/photo-1504674900247-0877df9cc836");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center; /* Tengah Horizontal */
+    align-items: center;     /* Tengah Vertikal */
+    color: white;
+    text-align: center;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column; /* Membuat isi berbaris ke bawah */
+    align-items: center;    /* Meratakan semua elemen ke tengah */
+    gap: 15px;              /* Jarak antar teks */
+}
+
+.hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 60px;
+    margin: 0;
+}
+
+.hero p {
+    font-size: 20px;
+    font-weight: 300;
+    margin: 0;
+    max-width: 600px;
+}
+
+.btn-hero {
+    margin-top: 20px;
+    padding: 12px 35px;
+    background: #ffc107;
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+/* MENU CARD */
+.menu {
+    padding: 80px 8%;
+    text-align: center;
+}
+
+.menu h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    margin-bottom: 40px;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-info {
+    padding: 20px;
+}
+
+.btn-order {
+    display: block;
+    margin-top: 15px;
+    padding: 10px;
+    background: transparent;
+    border: 2px solid #ffc107;
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 25px;
+    transition: 0.3s;
+}
+
+.btn-order:hover {
+    background: #ffc107;
+}
+
+footer {
+    text-align: center;
+    padding: 40px;
+    background: #1a1a1a;
+    color: #777;
+    font-size: 14px;
+}
+/* MODAL */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+}
+.hero-btn a {
+    text-decoration: none;
+    display: inline-block;
+}
+/* BOX */
+.modal-content {
+    background: white;
+    padding: 30px;
+    width: 300px;
+    margin: 10% auto;
+    border-radius: 10px;
+    text-align: center;
+}
+
+/* CLOSE */
+.close {
+    float: right;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* INPUT */
+.modal input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+/* FULL BUTTON */
+.full {
+    width: 100%;
+}
