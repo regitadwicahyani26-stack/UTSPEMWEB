@@ -5,7 +5,7 @@ $user = "3ymotaaKzzAD8W5.root";
 $pass = "9M4ha2k6HvOhlgQY";
 $db   = "restoran"; // <-- Ini yang diubah (menyesuaikan nama di phpMyAdmin)
 
-$conn = mysqli_connect($host, $user, $pass, $db);
+$conn = mysqli_connect($host, $port, $user, $pass, $db);
 
 if (!$conn) {
     die("Koneksi gagal: " . mysqli_connect_error());
