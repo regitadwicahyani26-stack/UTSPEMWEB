@@ -31,9 +31,9 @@ if(isset($_POST['login'])){
             setcookie('user_role',    $row['role'],          $durasi, '/');
 
             if($row['role'] == "admin"){
-                header("Location: admin_dashboard.php");
+                header("Location: /admin_dashboard.php");
             } else {
-                header("Location: home.php");
+                header("Location: /home.php");
             }
             exit;
 
