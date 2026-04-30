@@ -1,14 +1,17 @@
 <?php
-session_start();
 include 'koneksi.php';
 
-// 1. Cek apakah yang masuk benar-benar admin
-if (!isset($_SESSION['login']) || $_SESSION['role'] !== 'admin') {
+// ============================================================
+// CEK LOGIN MENGGUNAKAN COOKIE (bukan session)
+// ============================================================
+if (!isset($_COOKIE['user_login']) || $_COOKIE['user_role'] !== 'admin') {
     header("Location: login.php");
     exit;
 }
 
-// 2. Ambil Statistik Ringkas untuk Card Dashboard
+$nama_admin = $_COOKIE['user_nama'] ?? 'Admin';
+
+// Ambil Statistik
 $totalPesananQuery = mysqli_query($conn, "SELECT COUNT(*) as total FROM pesanan");
 $totalPesanan = mysqli_fetch_assoc($totalPesananQuery)['total'];
 
@@ -66,7 +69,7 @@ $totalMenu = mysqli_fetch_assoc($totalMenuQuery)['total'];
 
             <!-- SECTION: Statistik -->
             <div id="section-stats">
-                <h2 class="mb-4">Selamat Datang, Admin <?php echo $_SESSION['nama']; ?>!</h2>
+                <h2 class="mb-4">Selamat Datang, Admin <?php echo htmlspecialchars($nama_admin); ?>!</h2>
 
                 <div class="row mb-5">
                     <div class="col-md-4">
@@ -244,7 +247,6 @@ function loadBPS() {
     const tblWilayah   = document.getElementById('data-wilayah');
     const tblInformasi = document.getElementById('data-informasi');
 
-    // Tampilkan loading
     const loading = '<tr><td colspan="2" class="text-center py-4">Memuat data dari API BPS...</td></tr>';
     tblWilayah.innerHTML   = loading;
     tblInformasi.innerHTML = loading;
@@ -260,10 +262,8 @@ function loadBPS() {
                 return;
             }
 
-            // ── Tabel Kiri: Data Wilayah (info umum & subject) ──
-            let rowsWilayah = '';
-
-            rowsWilayah += `
+            // Tabel Kiri: Data Wilayah
+            let rowsWilayah = `
                 <tr>
                     <td class="fw-bold bg-light">Status</td>
                     <td>${data.status}</td>
@@ -291,7 +291,7 @@ function loadBPS() {
 
             tblWilayah.innerHTML = rowsWilayah;
 
-            // ── Tabel Kanan: Data Informasi (var dari BPS) ──
+            // Tabel Kanan: Data Informasi
             let rowsInfo = '';
 
             if (data.var && data.var.length > 0) {
