@@ -1,18 +1,26 @@
 <?php
 include 'koneksi.php';
 if (isset($_POST['register'])) {
-    // Ganti variable $username jadi $email
+    // 1. Sanitize inputs
     $email = mysqli_real_escape_string($conn, $_POST['email']); 
-    $nama = mysqli_real_escape_string($conn, $_POST['nama_lengkap']);
+    $nama  = mysqli_real_escape_string($conn, $_POST['nama_lengkap']);
+    
+    // 2. Fix password_hash (The second parameter should be a constant like PASSWORD_DEFAULT)
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-    // Update Query-nya (username jadi email)
-    $query = "INSERT INTO users (email, password, nama_lengkap) VALUES ('$email', '$password', '$nama')";
+    /* 3. Update Query:
+       - We skip 'id' because it is usually AUTO_INCREMENT.
+       - We match the order: (nama_lengkap, email, password)
+    */
+    $query = "INSERT INTO users (nama_lengkap, email, password) VALUES ('$nama', '$email', '$password')";
+    
     if (mysqli_query($conn, $query)) {
         echo "<script>alert('Berhasil Daftar!'); window.location='login.php';</script>";
+    } else {
+        // Helpful for debugging if it fails
+        echo "Error: " . mysqli_error($conn);
     }
 }
-?>
 <!DOCTYPE html>
 <html>
 <head>
