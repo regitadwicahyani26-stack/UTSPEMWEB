@@ -12,7 +12,7 @@ if (isset($_POST['register'])) {
     if (mysqli_num_rows($cek) > 0) {
         $error_msg = 'Email sudah terdaftar, gunakan email lain.';
     } else {
-        $query = "INSERT INTO users (nama_lengkap, email, password) VALUES ('$nama', '$email', '$password')";
+        $query = "INSERT INTO users (nama_lengkap, email, password, role) VALUES ('$nama', '$email', '$password', 'user')";
         if (mysqli_query($conn, $query)) {
             $success_msg = 'Pendaftaran berhasil! Silakan login.';
         } else {
