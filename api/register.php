@@ -12,7 +12,9 @@ if (isset($_POST['register'])) {
     if (mysqli_num_rows($cek) > 0) {
         $error_msg = 'Email sudah terdaftar, gunakan email lain.';
     } else {
-        $query = "INSERT INTO users (nama_lengkap, email, password, role) VALUES ('$nama', '$email', '$password', 'user')";
+        $max_id_result = mysqli_query($conn, "SELECT COALESCE(MAX(id), 0) + 1 AS next_id FROM users");
+        $next_id = mysqli_fetch_assoc($max_id_result)['next_id'];
+        $query = "INSERT INTO users (id, nama_lengkap, email, password, role) VALUES ('$next_id', '$nama', '$email', '$password', 'user')";
         if (mysqli_query($conn, $query)) {
             $success_msg = 'Pendaftaran berhasil! Silakan login.';
         } else {
